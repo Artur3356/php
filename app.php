@@ -1,7 +1,7 @@
 <?php
 
 function selectRandomWord() {
-    $arrWord = ['apple', 'pear', 'peach'];
+    $arrWord = ['яблоко', 'груша', 'персик'];
     if (empty($arrWord)) {
         return '';
     }
@@ -12,7 +12,7 @@ function selectRandomWord() {
 
 function hideWord($word) {
     $asterisks = '';
-    for ($i = 0; $i < strlen($word); $i++) {
+    for ($i = 0; $i < mb_strlen($word); $i++) {
         $asterisks .= '_';
     }
     return $asterisks;
@@ -37,7 +37,7 @@ function checkGuess($word, $letter, &$guessedLetters, &$attemptsLeft) {
 
 function updateHiddenWord($word, $guessedLetters) {
     $str = '';
-    for ($i = 0; $i < strlen($word); $i++) {
+    for ($i = 0; $i < mb_strlen($word); $i++) {
         if (in_array($word[$i], $guessedLetters)) {
             $str .= $word[$i]; 
         } else {
@@ -120,7 +120,7 @@ _______________
 
 
 function isWordGuessed($word, $guessedLetters) {
-    foreach (str_split($word) as $char) {
+    foreach (mb_str_split($word) as $char) {
         if (!in_array($char, $guessedLetters)) {
             return false; 
         }
@@ -167,4 +167,5 @@ do {
 
 
 echo "Спасибо за игру! До свидания.";
+
 ?>
