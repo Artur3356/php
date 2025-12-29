@@ -1,5 +1,5 @@
 <?php
-
+mb_internal_encoding('UTF-8');
 function selectRandomWord() {
     $arrWord = ['яблоко', 'груша', 'персик'];
     if (empty($arrWord)) {
@@ -20,7 +20,11 @@ function hideWord($word) {
 
 
 function input() {
-    return trim(readline('Введите букву: '));
+    echo 'Введите букву: ';
+    $handle = fopen ("php://stdin","r");
+    $letter = fgets($handle);
+    fclose($handle);
+    return trim($letter); 
 }
 
 
@@ -38,8 +42,9 @@ function checkGuess($word, $letter, &$guessedLetters, &$attemptsLeft) {
 function updateHiddenWord($word, $guessedLetters) {
     $str = '';
     for ($i = 0; $i < mb_strlen($word); $i++) {
-        if (in_array($word[$i], $guessedLetters)) {
-            $str .= $word[$i]; 
+        $currentChar = mb_substr($word, $i, 1);
+        if (in_array($currentChar, $guessedLetters)) {
+            $str .= $currentChar; 
         } else {
             $str .= '_'; 
         }
@@ -169,3 +174,4 @@ do {
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
