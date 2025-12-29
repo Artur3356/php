@@ -33,7 +33,7 @@ function checkGuess($word, $letter, &$guessedLetters, &$attemptsLeft) {
         return; 
     }
     $guessedLetters[] = $letter;
-    if (stripos($word, $letter) === false) {
+    if (mb_stripos($word, $letter) === false) {
         $attemptsLeft--; 
     }
 }
@@ -168,10 +168,11 @@ do {
     echo "Хотите сыграть ещё раз? (Y/N): ";
     $choice = trim(readline());
 
-} while (strtolower($choice) === 'y');
+} while (mb_strtolower($choice) === 'y');
 
 
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
 
