@@ -19,7 +19,7 @@ do {
         echo "Оставшиеся попытки: ".$count."\n";
 
         
-        drawHangman($attemptsLeft);
+        drawHaunger($count);
 
        
         $letter = input();
@@ -45,6 +45,7 @@ do {
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
 
 
 
