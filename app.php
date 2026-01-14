@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ 'functionWord.php';
-require_once __DIR__ 'pickcha.php';
+require_once 'functionWord.php';
+require_once 'pickcha.php';
 
 echo '===Игра виселеца===';
 echo 'Отгадайте слово.У вас 6 попыток. Слово - это слово название фрукта';
@@ -45,6 +45,7 @@ do {
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
 
 
 
