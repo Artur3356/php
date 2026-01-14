@@ -11,7 +11,7 @@ return $randomWord[$randomKey];
 
 function input(){
 echo 'Введите букву: ';
-%handle = fopen("php://stdin", "r");
+$handle = fopen("php://stdin", "r");
 $letter = fgets($handle);
 fclose($handle);
 return trim($letter);
