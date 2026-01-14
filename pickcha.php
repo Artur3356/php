@@ -66,7 +66,7 @@ _______
 -----------------
 "
     ];
-$stage = 7 - $count;
+$stage = 6 - $count;
 $index = max(0,min($stage, count($images)-1));
 echo $images[$index];
 }
