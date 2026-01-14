@@ -38,10 +38,10 @@ $strWord .='_';
 }
 return $strWord;
 }
-funtion isWord($word, $arrLetter){
+function isWord($word, $arrLetter){
 for($i=0; $i < mb_strlen($word); $i++){
 $char = mb_substr($word, $i, 1);
-if(!in_array($char, $arrLetter){
+if(!in_array($char, $arrLetter)){
 return false;
 }                 
 }                 
