@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/appFunction.php';
-require_once __DIR__ . '/pikcha.php';
+require_once __DIR__ . '/functionWord.php';
+require_once __DIR__ . '/pickcha.php';
 
 echo "===Игра виселеца===.\n";
 echo "Отгадайте слово.У вас 6 попыток. Слово - это название фрукта\n\n";
@@ -45,6 +45,7 @@ do {
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
 
 
 
