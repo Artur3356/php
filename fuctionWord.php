@@ -1,6 +1,6 @@
 mb_internal_encoding('UTF-8');
 function selectRandomWord(){
-$randomWord = ['грауша', 'яблоко', 'персик', 'клубника'];
+$randomWord = ['груша', 'яблоко', 'персик', 'клубника'];
 if(empty($randomWord)){
 return '';
 }
