@@ -13,9 +13,9 @@ do {
     $count = 6;                                 
 
    
-    while ($count > 0 && !isWord($word, $arrLetters)) {
+    while ($count > 0 && !isWord($word, $arrLetter)) {
        
-        echo "Ваше слово: ".updateWord($word, $arrLetters)."\n";
+        echo "Ваше слово: ".updateWord($word, $arrLetter)."\n";
         echo "Оставшиеся попытки: ".$count."\n";
 
         
@@ -25,11 +25,11 @@ do {
         $letter = input();
 
        
-        checkGuess($word, $letter, $arrLetters, $count);
+        checkGuess($word, $letter, $arrLetter, $count);
     }
 
     
-    if (isWord($word, $arrLetters)) {
+    if (isWord($word, $arrLetter)) {
         echo "Поздравляю! Вы победили!\n";
     } else {
         echo "Игра закончилась. Вы проиграли.\n";
@@ -45,6 +45,7 @@ do {
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
 
 
 
