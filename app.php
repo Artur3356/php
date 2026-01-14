@@ -1,151 +1,22 @@
 <?php
-mb_internal_encoding('UTF-8');
-function selectRandomWord() {
-    $arrWord = ['яблоко', 'груша', 'персик'];
-    if (empty($arrWord)) {
-        return '';
-    }
-    $randomKey = array_rand($arrWord);
-    return $arrWord[$randomKey];
-}
+require_once __DIR__ 'functionWord.php';
+require_once __DIR__ 'pickcha.php';
 
-
-function hideWord($word) {
-    $asterisks = '';
-    for ($i = 0; $i < mb_strlen($word); $i++) {
-        $asterisks .= '_';
-    }
-    return $asterisks;
-}
-
-
-function input() {
-    echo 'Введите букву: ';
-    $handle = fopen ("php://stdin","r");
-    $letter = fgets($handle);
-    fclose($handle);
-    return trim($letter); 
-}
-
-
-function checkGuess($word, $letter, &$guessedLetters, &$attemptsLeft) {
-    if (in_array($letter, $guessedLetters)) {
-        return; 
-    }
-    $guessedLetters[] = $letter;
-    if (mb_stripos($word, $letter) === false) {
-        $attemptsLeft--; 
-    }
-}
-
-
-function updateHiddenWord($word, $guessedLetters) {
-    $str = '';
-    for ($i = 0; $i < mb_strlen($word); $i++) {
-        $currentChar = mb_substr($word, $i, 1);
-        if (in_array($currentChar, $guessedLetters)) {
-            $str .= $currentChar; 
-        } else {
-            $str .= '_'; 
-        }
-    }
-    return $str;
-}
-
-
-function drawHangman($attemptsLeft) {
-    $images = [
-        "",
-        "
-_______________
-|              |
-|              
-|             
-|           
-|
------------------
-",
-        "
-_______________
-|              |
-|              O
-|             
-|           
-|
------------------
-",
-        "
-_______________
-|              |
-|              O
-|              |
-|           
-|
------------------
-",
-        "
-_______________
-|              |
-|              O
-|             /|
-|           
-|
------------------
-",
-        "
-_______________
-|              |
-|              O
-|             /|\
-|           
-|
------------------
-",
-        "
-_______________
-|              |
-|              O
-|             /|\
-|             /
-|
------------------
-",
-        "
-_______________
-|              |
-|              O
-|             /|\
-|             / \\
-|
------------------
-"
-    ];
-    echo $images[count($images)-$attemptsLeft]."\n";
-}
-
-
-function isWordGuessed($word, $guessedLetters) {
-    foreach (mb_str_split($word) as $char) {
-        if (!in_array($char, $guessedLetters)) {
-            return false; 
-        }
-    }
-    return true; 
-}
-
+echo '===Игра виселеца===';
+echo 'Отгадайте слово.У вас 6 попыток. Слово - это слово название фрукта';
 
 
 do {
    
     $word = selectRandomWord();                         
-    $guessedLetters = [];                              
-    $attemptsLeft = 6;                                 
+    $arrLetter = [];                              
+    $count = 6;                                 
 
    
-    while ($attemptsLeft > 0 && !isWordGuessed($word, $guessedLetters)) {
+    while ($count > 0 && !isWord($word, $arrLetters)) {
        
-        echo "Ваше слово: ".updateHiddenWord($word, $guessedLetters)."\n";
-        echo "Оставшиеся попытки: ".$attemptsLeft."\n";
+        echo "Ваше слово: ".updateWord($word, $arrLetters)."\n";
+        echo "Оставшиеся попытки: ".$count."\n";
 
         
         drawHangman($attemptsLeft);
@@ -154,11 +25,11 @@ do {
         $letter = input();
 
        
-        checkGuess($word, $letter, $guessedLetters, $attemptsLeft);
+        checkGuess($word, $letter, $arrLetters, $count);
     }
 
     
-    if (isWordGuessed($word, $guessedLetters)) {
+    if (isWord($word, $arrLetters)) {
         echo "Поздравляю! Вы победили!\n";
     } else {
         echo "Игра закончилась. Вы проиграли.\n";
@@ -166,13 +37,14 @@ do {
 
     
     echo "Хотите сыграть ещё раз? (Y/N): ";
-    $choice = trim(readline());
+    $play = trim(readline());
 
-} while (mb_strtolower($choice) === 'y');
+} while (mb_strtolower($play) === 'y');
 
 
 echo "Спасибо за игру! До свидания.";
 
 ?>
+
 
 
